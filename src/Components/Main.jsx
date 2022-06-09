@@ -57,7 +57,7 @@ function Main() {
           <p className="location">{data.name}</p>
         </div>
         <div className="infoBottom">
-          <div> {data.main ? <p>{data.main.temp.toFixed()} C</p> : null}</div>
+          <div> {data.main ? <p>{data.main.temp.toFixed()}°C</p> : null}</div>
           <p className="weather"> {data.weather ? data.weather[0].main : null}</p>
           {icon ? <img src={icon} alt="icon" /> : null}
         </div>
