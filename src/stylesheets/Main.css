@@ -1,42 +1,49 @@
 .main {
-  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
 }
+
+.weather-content {
+  border-radius: 10px;
+  background-color: white;
+  color: #009ffd;
+  max-width: 400px;
+  width: 90%;
+}
+
+.weather-content h2 {
+  border-bottom: 1px solid rgb(214, 214, 214);
+  padding: 1rem 2rem;
+  width: 100%;
+}
+
+.fa-solid {
+  margin-right: 0.6rem;
+  color: #009ffd;
+}
+
 .card {
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
   font-size: 1.2rem;
-  padding: 0 1rem;
   border: none;
-  border-radius: 10px;
-  width: 200px;
-  height: 350px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-  background-color: rgb(0, 0, 0);
+  width: 100%;
+  color: black;
 }
 
-.card::before {
-  border-radius: 10px;
-  position: absolute;
-  content: "";
-  background-image: url("../assets/bg.jpg");
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center/cover;
-  opacity: 0.3;
-  z-index: -1;
+.card .infoTop .temperature {
+  font-size: 4rem;
+  font-weight: bold;
 }
 
-.card > div {
-  margin: 0;
-  padding: 0;
+.location {
+  margin-bottom: 1rem;
 }
 
 form {
@@ -44,35 +51,90 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 1rem 2rem;
+}
+
+.info-text {
+  display: none;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.info-text.error {
+  display: block;
+  background-color: rgb(252, 178, 178);
+  color: rgb(167, 67, 67);
+}
+.info-text.pending {
+  display: block;
+  background-color: #d1ecf1;
+  color: #0c5460;
 }
 
 input {
-  border-radius: var(--main-border-radius);
-  margin-bottom: 1rem;
-  width: 200px;
-  border: none;
-  border-radius: 20px;
-  padding: 0.65rem 0 0.65rem 0.8rem;
+  width: 100%;
+  border-radius: 10px;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  border: 1px solid rgb(214, 214, 214);
+  text-align: center;
 }
 
 input:focus {
-  outline: none;
+  outline-color: #009ffd;
+}
+
+.separator {
+  margin: 1.6rem 0;
+  width: 100%;
+  height: 1px;
+  background-color: rgb(214, 214, 214);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.separator::before {
+  content: "or";
+  color: rgb(214, 214, 214);
+  background-color: white;
+  font-size: 1.2rem;
+  padding: 0.6rem;
 }
 
 button {
-  margin-bottom: 2rem;
-  border: none;
-  border-radius: 20px;
-  padding: 0.65rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  padding: 0.8rem;
   color: white;
-  font-weight: 700;
-  box-shadow: 0 0 30px -5px rgba(0, 0, 0, 0.25);
-  background-color: #2a2a72;
-  background-image: linear-gradient(315deg, #4d4d78 0%, #009ffd 74%);
+  background-color: #009ffd;
   cursor: pointer;
-  width: 200px;
+  border: none;
+  width: 100%;
+  font-size: 1.2rem;
 }
 
 button:hover {
-  transform: scale(0.95);
+  background-color: #34b4ff;
+}
+
+/* Info Bottom */
+.infoBottom {
+  border-top: 1px solid rgb(214, 214, 214);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  height: 4.5rem;
+  align-content: center;
+}
+.infoLeft {
+  border-right: 1px solid rgb(214, 214, 214);
+  height: 100%;
+}
+
+.textInfo {
+  font-size: 0.9rem;
 }
