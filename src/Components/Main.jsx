@@ -13,6 +13,11 @@ function Main() {
 
   const searchLocation = (e) => {
     e.preventDefault();
+    setData({});
+    setIcon("");
+    document.querySelector(".info-text").classList.add("pending");
+    document.querySelector(".info-text").innerHTML = "Searching...";
+    document.querySelector(".info-text").classList.remove("error");
 
     axios
       .get(url)
@@ -20,22 +25,46 @@ function Main() {
         const imgSrc = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`;
         setIcon(imgSrc);
         setData(response.data);
+        document.querySelector(".info-text").classList.remove("pending");
       })
       .catch((err) => {
         if (err.response.status === 404) {
-          alert("City Not Found");
+          document.querySelector(".info-text").classList.remove("pending");
+          document.querySelector(".info-text").classList.add("error");
+          document.querySelector(".info-text").innerHTML = "Error, city not found!";
         }
       });
+  };
+
+  const handleGetLocation = () => {
+    setData({});
+    setIcon("");
+
+    document.querySelector(".info-text").classList.add("pending");
+    document.querySelector(".info-text").innerHTML = "Searching...";
+    document.querySelector(".info-text").classList.remove("error");
+
+    navigator.geolocation.getCurrentPosition(function (position) {
+      const { latitude, longitude } = position.coords;
+      let urlGetLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+
+      axios.get(urlGetLocation).then((response) => {
+        const imgSrc = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`;
+        setIcon(imgSrc);
+        setData(response.data);
+        setLocation(response.data.name);
+        document.querySelector(".info-text").classList.remove("pending");
+      });
+    });
   };
 
   return (
     <div className="main">
       <div className="weather-content">
-        <div id="title">
+        <div id="title" onClick={() => window.location.reload()}>
           <h2>Weather App</h2>
         </div>
         <form className="form" onSubmit={searchLocation}>
-          <p className="info-text">Please enter a valid city name</p>
           <input
             type="text"
             name="city"
@@ -47,57 +76,51 @@ function Main() {
             value={location}
           />
           <div className="separator"></div>
-          <button type="submit">Search</button>
+          <p className="button" onClick={handleGetLocation}>
+            Get Location
+          </p>
         </form>
 
         {/* Weather Information */}
         <div className="card">
           <div className="infoTop">
+            <p className="info-text">Searching...</p>
+
             {/* Temperature */}
-            <div className="temperature">
-              {data.main ? <p>{data.main.temp.toFixed()}° C</p> : null}
-            </div>
+            {data.main ? (
+              <div className="temperature">{data.main.temp.toFixed()}° C </div>
+            ) : null}
 
             {/* Weather */}
-            <p className="weather"> {data.weather ? data.weather[0].main : null}</p>
+            {data.main ? <div className="weather">{data.weather[0].main} </div> : null}
 
             {/* Icon */}
             {icon ? <img src={icon} alt="icon" width={"50px"} /> : null}
 
             {/* Location */}
-            <p className="location">
-              {data.main ? (
-                <p>
-                  <i className="fa-solid fa-location-dot"></i> {data.name}
-                </p>
-              ) : null}
-            </p>
+            {data.main ? (
+              <div className="location">
+                <i className="fa-solid fa-location-dot"></i> {data.name}
+              </div>
+            ) : null}
           </div>
 
           {/* Info Bottom */}
-
           {data.main ? (
             <div className="infoBottom">
               <div className="infoLeft">
-                <p className="feelsLike">
-                  {data.main ? (
-                    <p>
-                      <i className="fa-solid fa-temperature-half"></i>
-                      {data.main.feels_like.toFixed()}° C <br />{" "}
-                      <span className="textInfo">Feels like</span>
-                    </p>
-                  ) : null}
+                <p>
+                  <i className="fa-solid fa-temperature-half"></i>
+                  {data.main.feels_like.toFixed()}° C <br />
+                  <span className="infoBottomSpan">Feels like</span>
                 </p>
               </div>
+
               <div className="infoRight">
-                <p className="feelsLike">
-                  {data.main ? (
-                    <p>
-                      <i className="fa-solid fa-droplet"></i>{" "}
-                      {data.main.humidity.toFixed()}% <br />{" "}
-                      <span className="textInfo">Humidity</span>
-                    </p>
-                  ) : null}
+                <p>
+                  <i className="fa-solid fa-droplet"></i>
+                  {data.main.humidity.toFixed()}% <br />
+                  <span className="infoBottomSpan">Humidity</span>
                 </p>
               </div>
             </div>

@@ -1,3 +1,9 @@
+/* General */
+.fa-solid {
+  margin-right: 0.6rem;
+  color: #009ffd;
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -5,53 +11,6 @@
   justify-content: center;
   height: 100vh;
   width: 100vw;
-}
-
-.weather-content {
-  border-radius: 10px;
-  background-color: white;
-  color: #009ffd;
-  max-width: 400px;
-  width: 90%;
-}
-
-.weather-content h2 {
-  border-bottom: 1px solid rgb(214, 214, 214);
-  padding: 1rem 2rem;
-  width: 100%;
-}
-
-.fa-solid {
-  margin-right: 0.6rem;
-  color: #009ffd;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  border: none;
-  width: 100%;
-  color: black;
-}
-
-.card .infoTop .temperature {
-  font-size: 4rem;
-  font-weight: bold;
-}
-
-.location {
-  margin-bottom: 1rem;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 2rem;
 }
 
 .info-text {
@@ -67,11 +26,42 @@ form {
   display: block;
   background-color: rgb(252, 178, 178);
   color: rgb(167, 67, 67);
+  margin: 0 auto 2rem auto;
+  max-width: 400px;
+  width: 60%;
 }
+
 .info-text.pending {
   display: block;
   background-color: #d1ecf1;
   color: #0c5460;
+}
+
+/* Weather App container */
+.weather-content {
+  border-radius: 10px;
+  background-color: white;
+  color: #009ffd;
+  max-width: 400px;
+  width: 90%;
+}
+
+.weather-content h2 {
+  border-bottom: 1px solid rgb(214, 214, 214);
+  padding: 1rem 2rem;
+  width: 100%;
+}
+
+.location {
+  margin-bottom: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
 }
 
 input {
@@ -106,7 +96,8 @@ input:focus {
   padding: 0.6rem;
 }
 
-button {
+.button {
+  text-align: center;
   margin-bottom: 1rem;
   border-radius: 10px;
   padding: 0.8rem;
@@ -118,8 +109,25 @@ button {
   font-size: 1.2rem;
 }
 
-button:hover {
+.button:hover {
   background-color: #34b4ff;
+}
+
+/* Weather Information Card */
+.card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  border: none;
+  width: 100%;
+  color: black;
+}
+
+.card .infoTop .temperature {
+  font-size: 4rem;
+  font-weight: bold;
 }
 
 /* Info Bottom */
@@ -130,11 +138,12 @@ button:hover {
   height: 4.5rem;
   align-content: center;
 }
+
 .infoLeft {
   border-right: 1px solid rgb(214, 214, 214);
   height: 100%;
 }
 
-.textInfo {
+.infoBottomSpan {
   font-size: 0.9rem;
 }
