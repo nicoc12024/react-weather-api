@@ -13,4 +13,8 @@ Application where you can see the weather by setting a place or by "get location
 
 ## Demo
 
+https://sprightly-fudge-e6a8b5.netlify.app/
+
+## Screenshot
+
 ![alt text](https://github.com/nicoc12024/react-weather-api/blob/main/public/demo1.png)
