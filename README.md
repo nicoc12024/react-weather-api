@@ -13,4 +13,4 @@ Application where you can see the weather by setting a place or by "get location
 
 ## Demo
 
-![alt text](https://github.com/nicoc12024/react-weather-api/blob/master/public/demo1.png)
+![alt text](https://github.com/nicoc12024/react-weather-api/blob/main/public/demo1.png)
